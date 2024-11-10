@@ -1,12 +1,15 @@
 'use strict';
 
-document.querySelectorAll('form input').forEach((input) => {
+document.querySelectorAll('form input').forEach(input => {
   // Створюємо елемент `label`
   const label = document.createElement('label');
-
+  
   label.classList.add('field-label');
 
   // Встановлюємо атрибут `for` з ідентифікатором `input`
+  if (!input.id) {
+    input.id = input.name || `input-${Math.random().toString(36).substr(2, 9)}`;
+  }
   label.setAttribute('for', input.id);
 
   // Встановлюємо текст для `label` на основі `input` `name`
@@ -18,3 +21,5 @@ document.querySelectorAll('form input').forEach((input) => {
   // Додаємо `label` до батьківського контейнера `input`
   input.parentNode.insertBefore(label, input);
 });
+
+
